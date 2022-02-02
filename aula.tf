@@ -21,12 +21,20 @@ resource "aws_vpc" "vpc_brq" {
   }
 }
 
-resource "aws_subnet" "subrede_brq" {
-  vpc_id     = aws_vpc.vpc_brq.id
-  cidr_block = "10.0.1.0/24"
+# resource "aws_subnet" "subrede_brq" {
+#   vpc_id     = aws_vpc.vpc_brq.id
+#   cidr_block = "10.0.1.0/24"
+
+#   tags = {
+#     Name = "subrede_legal"
+#   }
+# }
+
+resource "aws_internet_gateway" "gw_brq" {
+  vpc_id = aws_vpc.vpc_brq.id
 
   tags = {
-    Name = "subrede_legal"
+    Name = "Claudio"
   }
 }
 
