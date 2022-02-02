@@ -38,6 +38,25 @@ resource "aws_internet_gateway" "gw_brq" {
   }
 }
 
+resource "aws_route_table" "rotas_brq" {
+  vpc_id = aws_vpc.vpc_brq.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw_brq.id
+  }
+
+  route {
+    ipv6_cidr_block        = "::/0"
+    gateway_id = aws_internet_gateway.gw_brq.id
+  }
+
+  tags = {
+    Name = "Joarez"
+  }
+}
+
+
 # resource "aws_instance" "helloworld"{
 #     ami = "ami-04505e74c0741db8d"
 #    instance_type = "t2.micro"
